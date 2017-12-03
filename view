@@ -105,7 +105,7 @@ function date_view() {
     echo ""
 
     #  Find all dates and sort
-    DATES=$(grep -o '[^  ]*t:[^  ]\+' "$TODO_FILE" | grep '^t:' | sort -u | sed 's/^t://g')
+    DATES=$(grep -o '[^  ]*due:[^  ]\+' "$TODO_FILE" | grep '^due:' | sort -u | sed 's/^due://g')
 
     #  Get option
     option=$1
@@ -124,7 +124,7 @@ function date_view() {
         fi
 
         #  Use core _list function, does numbering and colouring for us
-        DATE_LIST=$(_list "$TODO_FILE" "t:$date" "$term" | sed 's/\(^t:\|\ *t:\)[0-9-]*\ */ /g')
+        DATE_LIST=$(_list "$TODO_FILE" "due:$date" "$term" | sed 's/\(^due:\|\ *due:\)[0-9-]*\ */ /g')
         if [ -n "${DATE_LIST}" ]; then
             echo  "---  $date  ---"
             echo  "${DATE_LIST}"
